@@ -8,3 +8,5 @@ I did this for a number of reasons:
 - I wanted to do something non-trivial with JavaScript
 
 In some ways, I wish I wasn't so curious about various tech because I could have spent those hours watching the tube. :)
+
+Notice the cfg-files/dbinfo.inc.php - that's the access file for the 2nd MySQL database. If you're not careful, your website could be compromised at a level below public_html at which point your db access file woudl be compromised too...so you create it in a seperate folder with lower level chmod permissions. Your website hoster can give you more information.
