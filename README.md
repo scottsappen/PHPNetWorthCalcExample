@@ -9,4 +9,11 @@ I did this for a number of reasons:
 
 In some ways, I wish I wasn't so curious about various tech because I could have spent those hours watching the tube. :)
 
-Notice the cfg-files/dbinfo.inc.php - that's the access file for the 2nd MySQL database. If you're not careful, your website could be compromised at a level below public_html at which point your db access file woudl be compromised too...so you create it in a seperate folder with lower level chmod permissions. Your website hoster can give you more information.
+cfg-files/dbinfo.inc.php - that's the access file for the 2nd MySQL database. If you're not careful, your website could be compromised at a level below public_html at which point your db access file woudl be compromised too...so you create it in a seperate folder with lower level chmod permissions. Your website hoster can give you more information.
+
+public_html/dbinfo.inc.php - example of connecting to MySQL DB, creating a dataTable array, selecting data from DB, populating the dataTable array and json_encodeing that data
+e.g. $jsonData = json_encode($dataTable);
+
+public_html/zadmin/zadmin.php - example of retrieving previous stored result in MySQL DB and posting that as a blog post in WordPress DB
+e.g. $post_id = wp_insert_post( $user_post, $wp_error );
+
