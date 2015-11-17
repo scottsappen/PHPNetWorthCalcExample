@@ -1,0 +1,53 @@
+
+
+							<div class="accordion-group">
+								<div class="accordion-heading">
+									<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseF1">
+									<h4>Average net worth by age of everyone</h4>
+									</a>
+								</div>
+								<div id="collapseF1" class="accordion-body collapse in">
+									<div class="accordion-inner">
+										<div class="row">
+											<div class="span12">
+												<div>
+													<h3>Everyone, including you</h3>
+												</div>
+												<div>
+													<div id="div_avgnwbyagebarchart"></div>
+												</div>
+												<div>
+													<button type="button" class="btn btn-primary" id="btn_avgnwbyagebarchartredraw">Redraw This Chart</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<script type="text/javascript">
+		  google.load("visualization", "1", {packages:["corechart"]});
+		  google.setOnLoadCallback(drawChart);
+		  function drawChart() {
+			var jsonData = $.ajax({
+			  url: "getAvgNWByAgeData.php",
+			  dataType:"json",
+			  async: false
+			  }).responseText;
+			var options = {
+			  'width':'100%',
+			  'legend':'none',
+			  hAxis: {title: 'Age', titleTextStyle: {color: 'red'}}
+			};
+			var data = new google.visualization.DataTable(jsonData);
+			var formatter = new google.visualization.NumberFormat({pattern:'$###,###', negativeColor: 'red', negativeParens: true});
+			formatter.format(data, 1);
+			var chart = new google.visualization.ColumnChart(document.getElementById('div_avgnwbyagebarchart'));
+			chart.draw(data, options);
+		  }
+		</script>
+
+
